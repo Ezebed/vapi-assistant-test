@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Vapi from "@vapi-ai/web";
-import "./VapiAssistant.css";
+import "./VApiAssistant.css";
 import chatbotImg from "../../assets/chatbot.png";
 
 export const VapiAssistant = () => {
