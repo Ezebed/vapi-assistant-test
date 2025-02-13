@@ -6,7 +6,11 @@
 }
 
 .btn {
-  padding: 0.5rem 1rem;
+  padding-left: min(3rem, 4vw);
+  padding-right: min(3rem, 4vw);
+  padding-top: min(1.5rem, 2vw);
+  padding-bottom: min(1.5rem, 2vw);
+  font-size: clamp(1rem, 2vw, 2rem);
   font-weight: bold;
   border-radius: 10px;
   transition: all 0.2s ease-in-out;

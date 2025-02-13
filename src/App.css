@@ -19,5 +19,6 @@ body {
 
 .title {
   font-weight: bold;
-  font-size: 4rem;
+  text-align: center;
+  font-size: clamp(2rem, 4rem, 6rem);
 }
