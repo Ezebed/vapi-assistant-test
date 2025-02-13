@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Vapi from "@vapi-ai/web";
 import "./VapiAssistant.css";
+import chatbotImg from "../../assets/chatbot.png";
 
 export const VapiAssistant = () => {
   const [vapi, setVapi] = useState(null);
   const [callStatus, setCallStatus] = useState("idle"); // Estado para rastrear la llamada
+  const [AssistantTalking, setAssistantTalking] = useState(false);
 
   useEffect(() => {
+    // solicitar permisoso de microfono
+    navigator.mediaDevices
+      .getUserMedia({ audio: true })
+      .then(() => {
+        console.log("Permiso de micrófono concedido");
+      })
+      .catch((error) => {
+        console.error("Error al solicitar permiso de micrófono:", error);
+      });
+
     // Inicializa Vapi cuando el componente se monta
     const vapiInstance = new Vapi("6a185f88-9168-40cf-bc66-c90d68ecf943"); // Reemplaza con tu clave pública
     setVapi(vapiInstance);
@@ -24,10 +36,12 @@ export const VapiAssistant = () => {
 
     const handleSpeechStart = () => {
       console.log("El asistente está hablando");
+      setAssistantTalking(true);
     };
 
     const handleSpeechEnd = () => {
       console.log("El asistente dejó de hablar");
+      setAssistantTalking(false);
     };
 
     const handleError = (error) => {
@@ -64,7 +78,10 @@ export const VapiAssistant = () => {
   };
 
   return (
-    <div>
+    <div className="chatbot-container">
+      <div className={`chatbot-card ${AssistantTalking ? "active" : ""}`}>
+        <img className="chatbot-img" src={chatbotImg} alt="Assistans image" />
+      </div>
       <div className="buttons-container">
         <button
           onClick={startCall}
